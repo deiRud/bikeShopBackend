@@ -1,32 +1,65 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>BikeShop</groupId>
-  <artifactId>BikeShop</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Basic Project Information -->
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>BikeShop</groupId>
+    <artifactId>BikeShop</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <!-- Repositories -->
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+
+    <!-- Dependencies -->
     <dependencies>
-	<dependency>
-        <groupId>org.glassfish.jersey.core</groupId>
-        <artifactId>jersey-server</artifactId>
-        <version>2.35</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>2.8.8</version>  
-    </dependency>
-  </dependencies>
-  
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
-        <configuration>
-          <release>17</release>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+        <!-- Jersey JAX-RS (Server) for Jersey 2.x -->
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>2.45</version>  <!-- Latest stable version -->
+        </dependency>
+
+        <!-- Jersey Servlet for Jersey 2.x -->
+        <dependency>
+            <groupId>org.glassfish.jersey.servlet</groupId>
+            <artifactId>jersey-servlet</artifactId>
+            <version>2.45</version>  <!-- Latest stable version -->
+        </dependency>
+
+        <!-- Servlet API (Needed for Web Container support like Tomcat/Jetty) -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>  <!-- Servlet container (e.g., Tomcat) provides this -->
+        </dependency>
+
+        <!-- Gson Dependency for JSON Parsing -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.8</version>  <!-- Stable Gson version -->
+        </dependency>
+    </dependencies>
+
+    <!-- Build Settings -->
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <release>17</release>  <!-- Adjust this based on your JDK version -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

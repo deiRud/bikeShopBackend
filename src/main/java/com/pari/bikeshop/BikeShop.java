@@ -23,21 +23,21 @@ public class BikeShop {
             Connection connection = DatabaseConnection.getConnection();
             System.out.println("Connected to PostgreSQL server");
           
-            FrameDao frameDao = new FrameDaoImpl(connection);
-            BrakeDao brakeDao = new BrakeDaoImpl(connection);
+            //FrameDao frameDao = new FrameDaoImpl(connection);
+            //BrakeDao brakeDao = new BrakeDaoImpl(connection);
             BikeDao bikeDao = new BikeDaoImpl(connection);
             ProductDao productDao = new ProductDaoImpl(connection);
 			  			  
 			//Create
-            Frame frame = new Frame();
-            frame.setProductId(0);
-            frameDao.add(frame);
+            //Frame frame = new Frame();
+            //frame.setProductId(0);
+            //frameDao.add(frame);
 
             /*Bike bike = new Bike();
             bike.setBikeId(20);
-            bike.setCompany("test");
+            bike.setCompany("test");*/
             
-            bikeDao.add(bike);*/
+            //bikeDao.add(bike);
             
             //Create a new Brake object
             /*Brake brake = new Brake();
