@@ -14,3 +14,4 @@ public class ProductResource {
         // Sample data or fetch data from the service/database
         return "[{\"name\":\"Mountain Bike\", \"price\":500}, {\"name\":\"Road Bike\", \"price\":700}]";
     }
+}

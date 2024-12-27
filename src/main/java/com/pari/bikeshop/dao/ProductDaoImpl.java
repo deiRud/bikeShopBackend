@@ -1,15 +1,12 @@
 package com.pari.bikeshop.dao;
 
+import com.pari.bikeshop.products.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.pari.bikeshop.products.Brake;
-import com.pari.bikeshop.products.Product;
 
 public class ProductDaoImpl implements ProductDao{
 	
@@ -24,7 +21,7 @@ public class ProductDaoImpl implements ProductDao{
 		this.connection = connection;
 	}
 
-	@Override
+	/*@Override
 	public void add(Product product) {
 		String sql = "INSERT INTO product (product_id, name_model, company, price, amount, description, weight) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -39,10 +36,9 @@ public class ProductDaoImpl implements ProductDao{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-		
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public Product getById(int id) {
 		String sql = "SELECT * FROM product WHERE product_id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -62,33 +58,35 @@ public class ProductDaoImpl implements ProductDao{
             e.printStackTrace();
         }
         return null;
-	}
+	}*/
 
-	@Override
-	public List<Product> getAll() {
-		List<Product> products = new ArrayList<>();
+    @Override
+    public List<Product> getAll() {
+        List<Product> products = new ArrayList<>();
         String sql = "SELECT * FROM product";
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+        try (PreparedStatement stmt = connection.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                Product product = new Product();
-                        product.setProductId(rs.getInt("product_id"));
-                        product.setNameModel(rs.getString("name_model"));
-                        product.setCompany(rs.getString("company"));
-                        product.setPrice(rs.getDouble("price"));
-                        product.setAmount(rs.getInt("amount"));
-                        product.setDescription(rs.getString("description"));
-                        product.setWeight(rs.getDouble("weight"));
-                        products.add(product);
-               
+                Product product = new Product(
+                        rs.getInt("product_id"),
+                        rs.getString("name_model"),
+                        rs.getString("company"),
+                        rs.getDouble("price"),
+                        rs.getInt("amount"),
+                        rs.getString("description"),
+                        rs.getDouble("weight"),
+                        rs.getString("image_url")
+                ) {
+                };
+                products.add(product);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return products;
-	}
+    }
 
-	@Override
+	/*@Override
 	public void update(Product product) {
 		String sql = "UPDATE product SET name_model = ?, company = ?, price = ?, amount = ?, description = ?, weight = ? WHERE product_id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -104,9 +102,9 @@ public class ProductDaoImpl implements ProductDao{
             e.printStackTrace();
         }
 		
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public void delete(int id) {
 		String sql = "DELETE FROM product WHERE product_id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -116,7 +114,32 @@ public class ProductDaoImpl implements ProductDao{
             e.printStackTrace();
         }
 		
-	}
-	
+	}*/
+    @Override
+    public List<Product> getByCategory(String category) {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT * FROM products WHERE category = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, category);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Product product = new Product(
+                        rs.getInt("product_id"),
+                        rs.getString("name_model"),
+                        rs.getString("company"),
+                        rs.getDouble("price"),
+                        rs.getInt("amount"),
+                        rs.getString("description"),
+                        rs.getDouble("weight"),
+                        rs.getString("image_url")
+                ) {
+                };
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
 
 }

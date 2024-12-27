@@ -1,3 +1,5 @@
+package com.bikeshop.rest;
+
 import org.glassfish.jersey.servlet.ServletContainer;
 import org.glassfish.jersey.servlet.ServletProperties;
 

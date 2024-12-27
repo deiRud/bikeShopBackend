@@ -3,12 +3,19 @@ import java.util.List;
 
 import com.pari.bikeshop.products.Product;
 public interface ProductDao {
-    
-	void add(Product product);
-    Product getById(int id);
+
+    //void add(Product product);
+
+    //Product getById(int id);
+
     List<Product> getAll();
-    void update(Product product);
-    void delete(int id);
+
+    //void update(Product product);
+
+    //void delete(int id);
+
+    List<Product> getByCategory(String category);
+    }
     
 	/*private Connection connection;
 	
@@ -109,4 +116,4 @@ public interface ProductDao {
 		//return null;
 		
 	//}
-}
+//}
